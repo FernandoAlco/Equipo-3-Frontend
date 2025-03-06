@@ -1,6 +1,6 @@
 import * as ImagePicker from 'expo-image-picker';
 import React, { useState } from 'react';
-import { View, TextInput, Button, Text, Image, Alert, ScrollView } from 'react-native';
+import { View, TextInput, Button, Text, Image, Alert, ScrollView, TouchableOpacity } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 
 type FormularioProps = {
@@ -78,7 +78,9 @@ const FormularioIntercambio: React.FC<FormularioProps> = () => {
         />
 
         {/* Subir Foto */}
-        <Button title="Seleccionar Foto" onPress={elegirFoto} />
+        <TouchableOpacity className="mb-4 rounded-md bg-green-500 py-2 px-4" onPress={elegirFoto}>
+          <Text className="text-center text-white">Seleccionar Foto</Text>
+        </TouchableOpacity>
         {foto && <Image source={{ uri: foto }} className="mt-4 h-48 w-48 rounded-md" />}
 
         {/* Mapa */}
@@ -91,7 +93,9 @@ const FormularioIntercambio: React.FC<FormularioProps> = () => {
         </MapView>
 
         {/* Botón Enviar */}
-        <Button title="Enviar Formulario" onPress={enviarFormulario} />
+        <TouchableOpacity className="mt-4 rounded-md bg-green-500 py-2 px-4" onPress={enviarFormulario}>
+          <Text className="text-center text-white">Enviar Formulario</Text>
+        </TouchableOpacity>
       </ScrollView>
     </View>
   );

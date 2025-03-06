@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, ScrollView, ImageBackground } from 'react-native';
 
 // Definimos el tipo para los mensajes
 type Message = {
@@ -21,7 +21,12 @@ export default function Chat() {
   };
 
   return (
-    <View className="flex-1 bg-gray-100">
+    <ImageBackground 
+      source={require('../assets/BackgroundTV.jpg')}
+      className="flex-1"
+      resizeMode="cover"
+    >
+    <View className="flex-1">
       <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'flex-end', padding: 16 }}>
         {messages.map((message) => (
           <View
@@ -43,5 +48,6 @@ export default function Chat() {
         </TouchableOpacity>
       </View>
     </View>
+    </ImageBackground>
   );
 }

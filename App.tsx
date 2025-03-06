@@ -23,7 +23,7 @@ export default function App() {
   return (
     <SafeAreaView className="flex-1 bg-gray-100">
       {/* Botones en la parte superior */}
-      <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingTop: 10 }}>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingTop: 40 }}>
         <Button title="Ir a Chat" onPress={handleShowChat} />
         <Button title="Formulario" onPress={handleShowForm} />
       </View>
