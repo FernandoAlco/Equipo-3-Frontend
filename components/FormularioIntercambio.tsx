@@ -2,6 +2,7 @@ import * as ImagePicker from 'expo-image-picker';
 import React, { useState } from 'react';
 import { View, TextInput, Button, Text, Image, Alert, ScrollView, TouchableOpacity } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
+import { Camera, ArrowLeft } from 'phosphor-react-native'; //npm install phosphor-react-native
 
 type FormularioProps = {
   // Aquí puedes definir props si las necesitas, actualmente no es necesario.
@@ -38,50 +39,68 @@ const FormularioIntercambio: React.FC<FormularioProps> = () => {
   };
 
   return (
-    <View className="flex-1 justify-center bg-white p-4">
-      <Text className="mb-8 text-3xl font-bold">Formulario de intercambio</Text>
-      <ScrollView>
-        {/* Producto a Cambiar */}
-        <Text className="mb-2 text-lg font-semibold">Producto a Cambiar</Text>
-        <TextInput
-          className="mb-4 rounded-md border border-gray-300 p-2 text-lg"
-          placeholder="Nombre del producto"
-          value={producto}
-          onChangeText={setProducto}
-        />
+    <View className="flex-1 bg-white p-4">
+  <View className="flex-row items-center">
+    <TouchableOpacity className="h-12 w-12 items-center justify-center rounded-full bg-lime-400">
+      <ArrowLeft size={28} color="black" />
+    </TouchableOpacity>
 
+    <Text className="ml-4 text-2xl font-bold">Formulario de intercambio</Text>
+  </View>
+
+
+  <ScrollView className="mt-9">
+    {/* Producto a Cambiar */}
+    <Text className="mb-1 text-lg font-semibold ">Producto a Cambiar</Text>
+    <TextInput
+      className="mb-4 rounded-full bg-gray-300 p-3 text-lg"
+      placeholder="Nombre del producto"
+      value={producto}
+      onChangeText={setProducto}
+    />
         {/* Descripción */}
-        <Text className="mb-2 text-lg font-semibold">Descripción</Text>
+        <Text className="mb-1 text-lg font-semibold">Descripción</Text>
         <TextInput
-          className="mb-4 rounded-md border border-gray-300 p-2 text-lg"
+          className="mb-4 rounded-full bg-gray-300 p-3 text-lg"
           placeholder="Descripción del producto"
           value={descripcion}
           onChangeText={setDescripcion}
         />
 
         {/* Cambio por */}
-        <Text className="mb-2 text-lg font-semibold">Cambio por</Text>
+        <Text className="mb-1 text-lg font-semibold">Cambio por</Text>
         <TextInput
-          className="mb-4 rounded-md border border-gray-300 p-2 text-lg"
-          placeholder="Qué deseas cambiar por el producto"
+          className="mb-4 rounded-full bg-gray-300 p-3 text-lg"
+          placeholder="Que deseas cambiar por el producto"
           value={cambioPor}
           onChangeText={setCambioPor}
         />
 
         {/* Ubicación */}
-        <Text className="mb-2 text-lg font-semibold">Ubicación</Text>
+        <Text className="mb-1 text-lg font-semibold">Ubicación</Text>
         <TextInput
-          className="mb-4 rounded-md border border-gray-300 p-2 text-lg"
+          className="mb-4 rounded-full bg-gray-300 p-3 text-lg"
           placeholder="Ubicación"
           value={ubicacion}
           onChangeText={setUbicacion}
         />
 
-        {/* Subir Foto */}
-        <TouchableOpacity className="mb-4 rounded-md bg-green-500 py-2 px-4" onPress={elegirFoto}>
-          <Text className="text-center text-white">Seleccionar Foto</Text>
+        {/* Botón para subir foto */}
+        <TouchableOpacity
+          className="mt-6 flex-row items-center justify-center"
+          onPress={elegirFoto}>
+          <View className="h-12 w-12 items-center justify-center rounded-full bg-lime-400">
+            <Camera size={28} color="black" />
+          </View>
+          <Text className="ml-3 text-lg font-semibold">Seleccionar foto</Text>
         </TouchableOpacity>
-        {foto && <Image source={{ uri: foto }} className="mt-4 h-48 w-48 rounded-md" />}
+
+        {/* Imagen seleccionada */}
+        {foto && (
+           <View className="mt-4 items-center">
+          <Image source={{ uri: foto }} className="h-48 w-48 rounded-lg" />
+         </View>
+        )}
 
         {/* Mapa */}
         <Text className="mb-2 text-lg font-semibold">Mapa</Text>
@@ -93,8 +112,8 @@ const FormularioIntercambio: React.FC<FormularioProps> = () => {
         </MapView>
 
         {/* Botón Enviar */}
-        <TouchableOpacity className="mt-4 rounded-md bg-green-500 py-2 px-4" onPress={enviarFormulario}>
-          <Text className="text-center text-white">Enviar Formulario</Text>
+        <TouchableOpacity className="mt-4 rounded-full bg-lime-400 py-2 px-4" onPress={enviarFormulario}>
+          <Text className="text-center text-black font-semibold">Enviar Formulario</Text>
         </TouchableOpacity>
       </ScrollView>
     </View>
